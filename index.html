@@ -28,6 +28,74 @@
             padding-bottom: 50px;
         }
 
+        /* --- PANTALLA DE LOGIN (NUEVO) --- */
+        #login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--blue-header);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .login-box h2 {
+            color: var(--blue-sidebar);
+            margin-bottom: 20px;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .login-btn {
+            background: var(--blue-sidebar);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: var(--blue-header);
+        }
+
+        #error-msg {
+            color: red;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        /* Ocultar contenido principal al inicio */
+        #app-content {
+            display: none;
+        }
+
         /* --- NAVEGACIÓN --- */
         header {
             background: white;
@@ -345,198 +413,214 @@
 </head>
 <body>
 
-    <header>
-        <nav>
-            <div class="nav-logo">Bryan<span>Palma</span></div>
-            <div class="tabs-container">
-                <button class="tab-btn active" onclick="showSection('cv')">CV</button>
-                <button class="tab-btn" onclick="showSection('projects')">Proyectos</button>
-                <button class="tab-btn" onclick="showSection('certificates')">Certificados</button>
-            </div>
-        </nav>
-    </header>
+    <!-- PANTALLA DE LOGIN (NUEVO) -->
+    <div id="login-screen">
+        <div class="login-box">
+            <h2>Acceso Restringido</h2>
+            <p style="margin-bottom: 20px; color: #666;">Por favor, ingresa la contraseña para ver el portafolio.</p>
+            <input type="password" id="passwordInput" class="login-input" placeholder="Contraseña">
+            <button onclick="checkPassword()" class="login-btn">Entrar</button>
+            <p id="error-msg">Contraseña incorrecta</p>
+        </div>
+    </div>
 
-    <main>
-        <!-- VISTA CURRICULUM -->
-        <section id="cv" class="section-view active">
-            <div class="cv-layout">
-                
-                <aside class="cv-sidebar">
-                    <div class="photo-frame">
-                        <img src="img/Image.jpg" alt="Foto de Bryan" class="profile-img">
-                    </div>
+    <!-- TODO EL CONTENIDO DE LA APP ENVUELTO AQUÍ -->
+    <div id="app-content">
 
-                    <div class="sidebar-section">
-                        <h3 class="sidebar-title">Datos Personales</h3>
-                        <div class="contact-row"><i class="fas fa-phone"></i> (636) 128 4704</div>
-                        <div class="contact-row"><i class="fas fa-envelope"></i> bryanalemania@hotmail.com</div>
-                        <div class="contact-row"><i class="fas fa-map-marker-alt"></i> Callejón 8 y Coahuila # 3312, Colonia Jaramillo</div>
-                    </div>
+        <header>
+            <nav>
+                <div class="nav-logo">Bryan<span>Palma</span></div>
+                <div class="tabs-container">
+                    <button class="tab-btn active" onclick="showSection('cv')">CV</button>
+                    <button class="tab-btn" onclick="showSection('projects')">Proyectos</button>
+                    <button class="tab-btn" onclick="showSection('certificates')">Certificados</button>
+                </div>
+            </nav>
+        </header>
 
-                    <div class="sidebar-section">
-                        <h3 class="sidebar-title">Habilidades Blandas</h3>
-                        <ul class="sidebar-list">
-                            <li>Comunicación oral y escrita</li>
-                            <li>Paciente</li>
-                            <li>Me gusta aprender cosas nuevas</li>
-                            <li>Trabajo en equipo</li>
-                        </ul>
-                    </div>
+        <main>
+            <!-- VISTA CURRICULUM -->
+            <section id="cv" class="section-view active">
+                <div class="cv-layout">
+                    
+                    <aside class="cv-sidebar">
+                        <div class="photo-frame">
+                            <img src="img/Image.jpg" alt="Foto de Bryan" class="profile-img">
+                        </div>
 
-                    <div class="sidebar-section">
-                        <h3 class="sidebar-title">Habilidades Técnicas</h3>
-                        <ul class="sidebar-list">
-                            <li>Conocimiento en cableado y redes (Intermedio)</li>
-                            <li>Básico en Java</li>
-                            <li>Intermedio en bases de datos</li>
-                            <li>Conocimiento en Office (Word, Excel, etc.)</li>
-                        </ul>
-                    </div>
+                        <div class="sidebar-section">
+                            <h3 class="sidebar-title">Datos Personales</h3>
+                            <div class="contact-row"><i class="fas fa-phone"></i> (636) 128 4704</div>
+                            <div class="contact-row"><i class="fas fa-envelope"></i> bryanalemania@hotmail.com</div>
+                            <!-- DIRECCIÓN GENERALIZADA POR SEGURIDAD -->
+                            <div class="contact-row"><i class="fas fa-map-marker-alt"></i> Nuevo Casas Grandes, Chihuahua</div>
+                        </div>
 
-                    <div class="sidebar-section">
-                        <h3 class="sidebar-title">Idiomas</h3>
-                        <ul class="sidebar-list">
-                            <li>Español (Nativo)</li>
-                            <li>Inglés (Intermedio)</li>
-                        </ul>
-                    </div>
-                </aside>
+                        <div class="sidebar-section">
+                            <h3 class="sidebar-title">Habilidades Blandas</h3>
+                            <ul class="sidebar-list">
+                                <li>Comunicación oral y escrita</li>
+                                <li>Paciente</li>
+                                <li>Me gusta aprender cosas nuevas</li>
+                                <li>Trabajo en equipo</li>
+                            </ul>
+                        </div>
 
-                <article class="cv-content">
-                    <div class="cv-header">
-                        <h1 class="cv-name">Bryan Fernando Palma Mendez</h1>
-                        <h2 class="cv-role">Ingeniero en Sistemas Computacionales</h2>
-                    </div>
+                        <div class="sidebar-section">
+                            <h3 class="sidebar-title">Habilidades Técnicas</h3>
+                            <ul class="sidebar-list">
+                                <li>Conocimiento en cableado y redes (Intermedio)</li>
+                                <li>Básico en Java</li>
+                                <li>Intermedio en bases de datos</li>
+                                <li>Conocimiento en Office (Word, Excel, etc.)</li>
+                            </ul>
+                        </div>
 
-                    <div class="cv-body">
-                        <h3 class="main-title">Perfil</h3>
-                        <p class="profile-text">
-                            Estudiante de la carrera de Sistemas Computacionales. Disfruto ver series, películas y jugar videojuegos. Soy estricto con mi trabajo, buscando siempre hacerlo bien y de la manera más eficiente posible. Soy un apasionado del área de redes, además de ser una persona amable y paciente.
-                        </p>
+                        <div class="sidebar-section">
+                            <h3 class="sidebar-title">Idiomas</h3>
+                            <ul class="sidebar-list">
+                                <li>Español (Nativo)</li>
+                                <li>Inglés (Intermedio)</li>
+                            </ul>
+                        </div>
+                    </aside>
 
-                        <h3 class="main-title">Experiencia Laboral</h3>
+                    <article class="cv-content">
+                        <div class="cv-header">
+                            <h1 class="cv-name">Bryan Fernando Palma Mendez</h1>
+                            <h2 class="cv-role">Ingeniero en Sistemas Computacionales</h2>
+                        </div>
+
+                        <div class="cv-body">
+                            <h3 class="main-title">Perfil</h3>
+                            <p class="profile-text">
+                                Estudiante de la carrera de Sistemas Computacionales. Disfruto ver series, películas y jugar videojuegos. Soy estricto con mi trabajo, buscando siempre hacerlo bien y de la manera más eficiente posible. Soy un apasionado del área de redes, además de ser una persona amable y paciente.
+                            </p>
+
+                            <h3 class="main-title">Experiencia Laboral</h3>
+                            
+                            <div class="job-item">
+                                <div class="job-role">Carga y Descarga de Tráilers</div>
+                                <span class="job-company">Empresa Albertsons</span>
+                                <p class="job-desc">Realizaba la carga y descarga de tráilers utilizando máquinas especiales. Disfrutaba realizar este trabajo con eficiencia.</p>
+                            </div>
+
+                            <div class="job-item">
+                                <div class="job-role">Paquimé Registros</div>
+                                <span class="job-company">Empresa Paquimé</span>
+                                <p class="job-desc">Trabajé en la empacadora Paquimé en el área conocida como "dompe". Mi función principal consistía en pesar cajones de durazno y llevar un registro preciso de ellos.</p>
+                            </div>
+
+                            <div class="job-item">
+                                <div class="job-role">Área de Sistemas</div>
+                                <span class="job-company">Empresa Paquimé</span>
+                                <p class="job-desc">En el área de sistemas de Paquimé adquirí gran experiencia. Realicé diversas tareas especializadas, desde la reparación de computadoras hasta la instalación de cámaras de seguridad.</p>
+                            </div>
+
+                            <h3 class="main-title">Formación</h3>
+                            <div class="job-item" style="border:none;">
+                                <div class="job-role">Preparatoria:</div>
+                                <span class="job-company">Instituto Blas Pascal</span>
+                                <p class="job-desc">Periodo: 2017 - 2020</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- VISTA PROYECTOS -->
+            <section id="projects" class="section-view">
+                <div class="projects-container">
+                    <h2 style="color: var(--blue-sidebar); border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 30px;">Mis Proyectos</h2>
+                    
+                    <div class="projects-grid">
                         
-                        <div class="job-item">
-                            <div class="job-role">Carga y Descarga de Tráilers</div>
-                            <span class="job-company">Empresa Albertsons</span>
-                            <p class="job-desc">Realizaba la carga y descarga de tráilers utilizando máquinas especiales. Disfrutaba realizar este trabajo con eficiencia.</p>
-                        </div>
-
-                        <div class="job-item">
-                            <div class="job-role">Paquimé Registros</div>
-                            <span class="job-company">Empresa Paquimé</span>
-                            <p class="job-desc">Trabajé en la empacadora Paquimé en el área conocida como "dompe". Mi función principal consistía en pesar cajones de durazno y llevar un registro preciso de ellos.</p>
-                        </div>
-
-                        <div class="job-item">
-                            <div class="job-role">Área de Sistemas</div>
-                            <span class="job-company">Empresa Paquimé</span>
-                            <p class="job-desc">En el área de sistemas de Paquimé adquirí gran experiencia. Realicé diversas tareas especializadas, desde la reparación de computadoras hasta la instalación de cámaras de seguridad.</p>
-                        </div>
-
-                        <h3 class="main-title">Formación</h3>
-                        <div class="job-item" style="border:none;">
-                            <div class="job-role">Preparatoria:</div>
-                            <span class="job-company">Instituto Blas Pascal</span>
-                            <p class="job-desc">Periodo: 2017 - 2020</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <!-- VISTA PROYECTOS -->
-        <section id="projects" class="section-view">
-            <div class="projects-container">
-                <h2 style="color: var(--blue-sidebar); border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 30px;">Mis Proyectos</h2>
-                
-                <div class="projects-grid">
-                    
-                    <!-- PROYECTO 1 -->
-                    <div class="project-card" onclick="openModal('Departamento de Enfermería', 'Este proyecto fue realizado para el Departamento de Enfermería del Instituto Tecnológico Superior de Nuevo Casas Grandes, con la finalidad de tener un mejor control de las citas de los alumnos y trabajadores. A su vez, permite un mejor control y organización de los medicamentos, gestionando tanto el stock como su caducidad.', ['PHP', 'JavaScript', 'CSS', 'HTML'], ['img/Imagen1.png', 'img/Imagen2.png', 'img/Imagen3.png', 'img/Imagen4.png', 'img/Imagen5.png', 'img/Imagen6.png', 'img/Imagen7.png'])">
-                        <div class="p-image">
-                            <img src="img/Imagen1.png" alt="Enfermería" class="project-thumb">
-                        </div>
-                        <div class="p-content">
-                            <h3 class="p-title">Departamento de Enfermería</h3>
-                            <div class="p-tags">
-                                <span class="tag">PHP</span>
-                                <span class="tag">JavaScript</span>
-                                <span class="tag">CSS</span>
-                                <span class="tag">HTML</span>
+                        <!-- PROYECTO 1 -->
+                        <div class="project-card" onclick="openModal('Departamento de Enfermería', 'Este proyecto fue realizado para el Departamento de Enfermería del Instituto Tecnológico Superior de Nuevo Casas Grandes, con la finalidad de tener un mejor control de las citas de los alumnos y trabajadores. A su vez, permite un mejor control y organización de los medicamentos, gestionando tanto el stock como su caducidad.', ['PHP', 'JavaScript', 'CSS', 'HTML'], ['img/Imagen1.png', 'img/Imagen2.png', 'img/Imagen3.png', 'img/Imagen4.png', 'img/Imagen5.png', 'img/Imagen6.png', 'img/Imagen7.png'])">
+                            <div class="p-image">
+                                <img src="img/Imagen1.png" alt="Enfermería" class="project-thumb">
                             </div>
-                            <p class="p-desc">Sistema de control de citas e inventario médico.</p>
-                        </div>
-                    </div>
-
-                    <!-- PROYECTO 2 -->
-                    <div class="project-card" onclick="openModal('Controles en Línea', 'Página web en línea para comprar controles de videojuegos (GameCube). Esta página fue diseñada con el propósito de crear una plataforma de ventas online, enfocada en un producto de alta demanda: controles de videojuegos retro.', ['HTML', 'CSS', 'PHP'], ['img/img1.png', 'img/img2.png', 'img/img3.png'])">
-                        <div class="p-image">
-                            <img src="img/img1.png" alt="Controles" class="project-thumb">
-                        </div>
-                        <div class="p-content">
-                            <h3 class="p-title">Controles en Línea</h3>
-                            <div class="p-tags">
-                                <span class="tag">HTML</span>
-                                <span class="tag">CSS</span>
-                                <span class="tag">PHP</span>
+                            <div class="p-content">
+                                <h3 class="p-title">Departamento de Enfermería</h3>
+                                <div class="p-tags">
+                                    <span class="tag">PHP</span>
+                                    <span class="tag">JavaScript</span>
+                                    <span class="tag">CSS</span>
+                                    <span class="tag">HTML</span>
+                                </div>
+                                <p class="p-desc">Sistema de control de citas e inventario médico.</p>
                             </div>
-                            <p class="p-desc">Página web de venta de controles de videojuegos.</p>
                         </div>
-                    </div>
 
+                        <!-- PROYECTO 2 -->
+                        <div class="project-card" onclick="openModal('Controles en Línea', 'Página web en línea para comprar controles de videojuegos (GameCube). Esta página fue diseñada con el propósito de crear una plataforma de ventas online, enfocada en un producto de alta demanda: controles de videojuegos retro.', ['HTML', 'CSS', 'PHP'], ['img/img1.png', 'img/img2.png', 'img/img3.png'])">
+                            <div class="p-image">
+                                <img src="img/img1.png" alt="Controles" class="project-thumb">
+                            </div>
+                            <div class="p-content">
+                                <h3 class="p-title">Controles en Línea</h3>
+                                <div class="p-tags">
+                                    <span class="tag">HTML</span>
+                                    <span class="tag">CSS</span>
+                                    <span class="tag">PHP</span>
+                                </div>
+                                <p class="p-desc">Página web de venta de controles de videojuegos.</p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- VISTA CERTIFICADOS (NUEVA) -->
-        <section id="certificates" class="section-view">
-            <div class="projects-container">
-                <h2 style="color: var(--blue-sidebar); border-bottom: 2px solid #d4af37; padding-bottom: 10px; margin-bottom: 30px; display: flex; align-items: center; gap: 10px;">
-                    <i class="fas fa-certificate" style="color: #d4af37;"></i> Certificaciones y Logros
-                </h2>
-                
-                <div class="projects-grid">
+            <!-- VISTA CERTIFICADOS (NUEVA) -->
+            <section id="certificates" class="section-view">
+                <div class="projects-container">
+                    <h2 style="color: var(--blue-sidebar); border-bottom: 2px solid #d4af37; padding-bottom: 10px; margin-bottom: 30px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-certificate" style="color: #d4af37;"></i> Certificaciones y Logros
+                    </h2>
                     
-                    <!-- CERTIFICADO 1: REDES -->
-                    <div class="project-card cert-card" onclick="openModal('Certificado en Redes', 'Certificación que avala conocimientos en estructuración de cableado, configuración de dispositivos de red y protocolos de comunicación.', ['Redes', 'Infraestructura'], ['img/redes.png'])">
-                        <div class="p-image">
-                            <img src="img/redes.png" alt="Certificado Redes" class="project-thumb">
-                            <div class="cert-icon"><i class="fas fa-award"></i></div>
-                        </div>
-                        <div class="p-content">
-                            <h3 class="p-title">Certificación en Redes</h3>
-                            <div class="p-tags">
-                                <span class="tag cert">Redes</span>
-                                <span class="tag cert">Infraestructura</span>
+                    <div class="projects-grid">
+                        
+                        <!-- CERTIFICADO 1: REDES -->
+                        <div class="project-card cert-card" onclick="openModal('Certificado en Redes', 'Certificación que avala conocimientos en estructuración de cableado, configuración de dispositivos de red y protocolos de comunicación.', ['Redes', 'Infraestructura'], ['img/redes.png'])">
+                            <div class="p-image">
+                                <img src="img/redes.png" alt="Certificado Redes" class="project-thumb">
+                                <div class="cert-icon"><i class="fas fa-award"></i></div>
                             </div>
-                            <p class="p-desc">Especialización en cableado y configuración.</p>
-                        </div>
-                    </div>
-
-                    <!-- CERTIFICADO 2: LINUX -->
-                    <div class="project-card cert-card" onclick="openModal('Certificado en Linux', 'Certificación en administración y manejo del sistema operativo Linux, cubriendo comandos, gestión de usuarios y seguridad.', ['Linux', 'Sistemas'], ['img/linux.png'])">
-                        <div class="p-image">
-                            <img src="img/linux.png" alt="Certificado Linux" class="project-thumb">
-                            <div class="cert-icon"><i class="fas fa-award"></i></div>
-                        </div>
-                        <div class="p-content">
-                            <h3 class="p-title">Curso de Linux</h3>
-                            <div class="p-tags">
-                                <span class="tag cert">Linux</span>
-                                <span class="tag cert">Sistemas Operativos</span>
+                            <div class="p-content">
+                                <h3 class="p-title">Certificación en Redes</h3>
+                                <div class="p-tags">
+                                    <span class="tag cert">Redes</span>
+                                    <span class="tag cert">Infraestructura</span>
+                                </div>
+                                <p class="p-desc">Especialización en cableado y configuración.</p>
                             </div>
-                            <p class="p-desc">Administración de sistemas y comandos.</p>
                         </div>
-                    </div>
 
+                        <!-- CERTIFICADO 2: LINUX -->
+                        <div class="project-card cert-card" onclick="openModal('Certificado en Linux', 'Certificación en administración y manejo del sistema operativo Linux, cubriendo comandos, gestión de usuarios y seguridad.', ['Linux', 'Sistemas'], ['img/linux.png'])">
+                            <div class="p-image">
+                                <img src="img/linux.png" alt="Certificado Linux" class="project-thumb">
+                                <div class="cert-icon"><i class="fas fa-award"></i></div>
+                            </div>
+                            <div class="p-content">
+                                <h3 class="p-title">Curso de Linux</h3>
+                                <div class="p-tags">
+                                    <span class="tag cert">Linux</span>
+                                    <span class="tag cert">Sistemas Operativos</span>
+                                </div>
+                                <p class="p-desc">Administración de sistemas y comandos.</p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-    </main>
+        </main>
+    </div> <!-- Cierre de #app-content -->
 
-    <!-- VENTANA MODAL -->
+    <!-- VENTANA MODAL (PROYECTOS) -->
     <div id="projectModal" class="modal" onclick="closeModal(event)">
         <div class="modal-box">
             <span class="close-modal" onclick="closeModalBtn()">&times;</span>
@@ -557,13 +641,35 @@
     </div>
 
     <script>
+        // --- LÓGICA DE LOGIN (NUEVO) ---
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            const errorMsg = document.getElementById('error-msg');
+            const loginScreen = document.getElementById('login-screen');
+            const appContent = document.getElementById('app-content');
+
+            // --- AQUÍ CAMBIAS TU CONTRASEÑA ---
+            if(input === "bryan123") { 
+                loginScreen.style.display = "none";
+                appContent.style.display = "block";
+            } else {
+                errorMsg.style.display = "block";
+            }
+        }
+
+        // Permitir dar Enter para entrar
+        document.getElementById('passwordInput').addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                checkPassword();
+            }
+        });
+
+
+        // --- LÓGICA EXISTENTE DEL PORTAFOLIO ---
         function showSection(id) {
-            // Ocultar todas las secciones
             document.querySelectorAll('.section-view').forEach(s => s.classList.remove('active'));
-            // Mostrar la seleccionada
             document.getElementById(id).classList.add('active');
             
-            // Actualizar botones de navegación
             const btns = document.querySelectorAll('.tab-btn');
             btns.forEach(b => b.classList.remove('active'));
             
@@ -593,7 +699,6 @@
             tags.forEach(t => {
                 const sp = document.createElement('span');
                 sp.className = 'tag'; 
-                // Si es tag de certificado (dorado), añadir clase extra
                 if(title.includes("Certifi") || title.includes("Curso")) {
                    sp.classList.add('cert');
                 }
