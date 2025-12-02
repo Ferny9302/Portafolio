@@ -4,20 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV - Bryan Fernando Palma Mendez</title>
-    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Fuentes -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- COLORES E IDENTIDAD VISUAL --- */
         :root {
             --blue-sidebar: #2c5484; 
             --blue-header: #1a3c61;
             --text-dark: #333;
             --text-white: #fff;
             --bg-page: #e0e0e0;
-            --gold-accent: #d4af37; /* Color dorado para certificados */
+            --gold-accent: #d4af37;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,7 +25,6 @@
             padding-bottom: 50px;
         }
 
-        /* --- PANTALLA DE LOGIN (NUEVO) --- */
         #login-screen {
             position: fixed;
             top: 0;
@@ -91,12 +87,10 @@
             display: none;
         }
 
-        /* Ocultar contenido principal al inicio */
         #app-content {
             display: none;
         }
 
-        /* --- NAVEGACIÓN --- */
         header {
             background: white;
             padding: 15px 0;
@@ -143,7 +137,6 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
-        /* --- CONTENEDOR PRINCIPAL --- */
         main {
             max-width: 1000px;
             margin: 0 auto;
@@ -156,12 +149,8 @@
         .section-view.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* =========================================
-           DISEÑO DEL CURRICULUM
-           ========================================= */
         .cv-layout { display: flex; min-height: 1000px; }
 
-        /* COLUMNA IZQUIERDA (AZUL) */
         .cv-sidebar {
             width: 35%;
             background-color: var(--blue-sidebar);
@@ -225,7 +214,6 @@
         }
         .sidebar-list li::before { content: "•"; margin-right: 8px; font-weight: bold; }
 
-        /* COLUMNA DERECHA (CONTENIDO) */
         .cv-content { width: 65%; background: white; }
 
         .cv-header {
@@ -279,9 +267,6 @@
         .job-company { display: block; font-weight: 600; color: #555; font-size: 0.9rem; margin-bottom: 5px; }
         .job-desc { font-size: 0.9rem; color: #666; }
 
-        /* =========================================
-           SECCIÓN PROYECTOS & CERTIFICADOS
-           ========================================= */
         .projects-container { padding: 40px; }
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
         
@@ -296,14 +281,13 @@
         }
         .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
 
-        /* Estilo especial para tarjetas de certificados */
         .cert-card:hover {
             border-color: var(--gold-accent);
             box-shadow: 0 10px 15px rgba(212, 175, 55, 0.2);
         }
 
         .p-image { 
-            height: 180px; /* Altura de la zona de imagen */
+            height: 180px; 
             background: #eef2f6; 
             display: flex; 
             align-items: center; 
@@ -312,7 +296,6 @@
             position: relative;
         }
         
-        /* Icono superpuesto para certificados */
         .cert-icon {
             position: absolute;
             top: 10px;
@@ -341,12 +324,10 @@
         .p-tags { margin-bottom: 10px; display: flex; gap: 5px; flex-wrap: wrap; }
         .tag { font-size: 0.75rem; background: #e0e7ff; color: var(--blue-sidebar); padding: 3px 8px; border-radius: 4px; font-weight: 600; }
         
-        /* Tags dorados para certificados */
         .tag.cert { background: #fff8e1; color: #b78a02; }
 
         .p-desc { font-size: 0.9rem; color: #666; }
 
-        /* MODAL */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 999; justify-content: center; align-items: center; }
         .modal-box { background: white; width: 90%; max-width: 800px; max-height: 90vh; overflow-y: auto; border-radius: 8px; padding: 20px; position: relative; }
         .close-modal { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: #333; z-index: 10; background: rgba(255,255,255,0.8); border-radius: 50%; padding: 0 10px; }
@@ -375,7 +356,6 @@
             font-size: 0.8rem;
         }
 
-        /* Flechas de Navegación */
         .nav-arrow {
             position: absolute;
             top: 50%;
@@ -388,7 +368,7 @@
             border-radius: 50%;
             width: 40px;
             height: 40px;
-            display: none; /* Se activa con JS */
+            display: none; 
             align-items: center;
             justify-content: center;
             transition: background 0.3s;
@@ -400,7 +380,6 @@
         .next { right: 10px; }
 
 
-        /* Responsive */
         @media (max-width: 768px) {
             .cv-layout { flex-direction: column; }
             .cv-sidebar, .cv-content { width: 100%; }
@@ -413,7 +392,6 @@
 </head>
 <body>
 
-    <!-- PANTALLA DE LOGIN (NUEVO) -->
     <div id="login-screen">
         <div class="login-box">
             <h2>Acceso Restringido</h2>
@@ -424,7 +402,6 @@
         </div>
     </div>
 
-    <!-- TODO EL CONTENIDO DE LA APP ENVUELTO AQUÍ -->
     <div id="app-content">
 
         <header>
@@ -439,7 +416,6 @@
         </header>
 
         <main>
-            <!-- VISTA CURRICULUM -->
             <section id="cv" class="section-view active">
                 <div class="cv-layout">
                     
@@ -452,8 +428,7 @@
                             <h3 class="sidebar-title">Datos Personales</h3>
                             <div class="contact-row"><i class="fas fa-phone"></i> (636) 128 4704</div>
                             <div class="contact-row"><i class="fas fa-envelope"></i> bryanalemania@hotmail.com</div>
-                            <!-- DIRECCIÓN GENERALIZADA POR SEGURIDAD -->
-                            <div class="contact-row"><i class="fas fa-map-marker-alt"></i> Nuevo Casas Grandes, Chihuahua</div>
+                            <div class="contact-row"><i class="fas fa-map-marker-alt"></i> Nuevo Casas Grandes, Chihuahua, México</div>
                         </div>
 
                         <div class="sidebar-section">
@@ -518,6 +493,13 @@
                             </div>
 
                             <h3 class="main-title">Formación</h3>
+                            
+                            <div class="job-item">
+                                <div class="job-role">Ingeniero en Sistemas Computacionales</div>
+                                <span class="job-company">Instituto Tecnológico Superior de Nuevo Casas Grandes</span>
+                                <p class="job-desc">Periodo: 2022 - Actualidad</p>
+                            </div>
+
                             <div class="job-item" style="border:none;">
                                 <div class="job-role">Preparatoria:</div>
                                 <span class="job-company">Instituto Blas Pascal</span>
@@ -528,14 +510,12 @@
                 </div>
             </section>
 
-            <!-- VISTA PROYECTOS -->
             <section id="projects" class="section-view">
                 <div class="projects-container">
                     <h2 style="color: var(--blue-sidebar); border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 30px;">Mis Proyectos</h2>
                     
                     <div class="projects-grid">
                         
-                        <!-- PROYECTO 1 -->
                         <div class="project-card" onclick="openModal('Departamento de Enfermería', 'Este proyecto fue realizado para el Departamento de Enfermería del Instituto Tecnológico Superior de Nuevo Casas Grandes, con la finalidad de tener un mejor control de las citas de los alumnos y trabajadores. A su vez, permite un mejor control y organización de los medicamentos, gestionando tanto el stock como su caducidad.', ['PHP', 'JavaScript', 'CSS', 'HTML'], ['img/Imagen1.png', 'img/Imagen2.png', 'img/Imagen3.png', 'img/Imagen4.png', 'img/Imagen5.png', 'img/Imagen6.png', 'img/Imagen7.png'])">
                             <div class="p-image">
                                 <img src="img/Imagen1.png" alt="Enfermería" class="project-thumb">
@@ -552,7 +532,6 @@
                             </div>
                         </div>
 
-                        <!-- PROYECTO 2 -->
                         <div class="project-card" onclick="openModal('Controles en Línea', 'Página web en línea para comprar controles de videojuegos (GameCube). Esta página fue diseñada con el propósito de crear una plataforma de ventas online, enfocada en un producto de alta demanda: controles de videojuegos retro.', ['HTML', 'CSS', 'PHP'], ['img/img1.png', 'img/img2.png', 'img/img3.png'])">
                             <div class="p-image">
                                 <img src="img/img1.png" alt="Controles" class="project-thumb">
@@ -572,7 +551,6 @@
                 </div>
             </section>
 
-            <!-- VISTA CERTIFICADOS (NUEVA) -->
             <section id="certificates" class="section-view">
                 <div class="projects-container">
                     <h2 style="color: var(--blue-sidebar); border-bottom: 2px solid #d4af37; padding-bottom: 10px; margin-bottom: 30px; display: flex; align-items: center; gap: 10px;">
@@ -581,7 +559,6 @@
                     
                     <div class="projects-grid">
                         
-                        <!-- CERTIFICADO 1: REDES -->
                         <div class="project-card cert-card" onclick="openModal('Certificado en Redes', 'Certificación que avala conocimientos en estructuración de cableado, configuración de dispositivos de red y protocolos de comunicación.', ['Redes', 'Infraestructura'], ['img/redes.png'])">
                             <div class="p-image">
                                 <img src="img/redes.png" alt="Certificado Redes" class="project-thumb">
@@ -597,7 +574,6 @@
                             </div>
                         </div>
 
-                        <!-- CERTIFICADO 2: LINUX -->
                         <div class="project-card cert-card" onclick="openModal('Certificado en Linux', 'Certificación en administración y manejo del sistema operativo Linux, cubriendo comandos, gestión de usuarios y seguridad.', ['Linux', 'Sistemas'], ['img/linux.png'])">
                             <div class="p-image">
                                 <img src="img/linux.png" alt="Certificado Linux" class="project-thumb">
@@ -618,9 +594,8 @@
             </section>
 
         </main>
-    </div> <!-- Cierre de #app-content -->
+    </div> 
 
-    <!-- VENTANA MODAL (PROYECTOS) -->
     <div id="projectModal" class="modal" onclick="closeModal(event)">
         <div class="modal-box">
             <span class="close-modal" onclick="closeModalBtn()">&times;</span>
@@ -641,14 +616,12 @@
     </div>
 
     <script>
-        // --- LÓGICA DE LOGIN (NUEVO) ---
         function checkPassword() {
             const input = document.getElementById('passwordInput').value;
             const errorMsg = document.getElementById('error-msg');
             const loginScreen = document.getElementById('login-screen');
             const appContent = document.getElementById('app-content');
 
-            // --- AQUÍ CAMBIAS TU CONTRASEÑA ---
             if(input === "bryan123") { 
                 loginScreen.style.display = "none";
                 appContent.style.display = "block";
@@ -657,7 +630,6 @@
             }
         }
 
-        // Permitir dar Enter para entrar
         document.getElementById('passwordInput').addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
                 checkPassword();
@@ -665,7 +637,6 @@
         });
 
 
-        // --- LÓGICA EXISTENTE DEL PORTAFOLIO ---
         function showSection(id) {
             document.querySelectorAll('.section-view').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
