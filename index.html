@@ -589,6 +589,34 @@
                             </div>
                         </div>
 
+                        <div class="project-card cert-card" onclick="openModal('Masterclass: Creación de Videojuegos', 'Reconocimiento por su valiosa participación en la Masterclass: Creación de mi primer videojuego, dentro del marco de los festejos del 31 aniversario del Instituto Tecnológico Superior de Nuevo Casas Grandes.', ['Game Design', 'Desarrollo'], ['img/certificado1.jpg'])">
+                            <div class="p-image">
+                                <img src="img/certificado1.jpg" alt="Masterclass Videojuego" class="project-thumb">
+                                <div class="cert-icon"><i class="fas fa-star"></i></div>
+                            </div>
+                            <div class="p-content">
+                                <h3 class="p-title">Masterclass: Videojuegos</h3>
+                                <div class="p-tags">
+                                    <span class="tag cert">Game Design</span>
+                                </div>
+                                <p class="p-desc">Creación de mi primer videojuego - ITSNCG.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-card cert-card" onclick="openModal('Masterclass: Inteligencia Artificial', 'Reconocimiento por su participación en la Masterclass de Inteligencia Artificial, donde se exploraron los fundamentos, algoritmos de aprendizaje automático y el impacto de la IA generativa en el desarrollo tecnológico actual.', ['IA', 'Tecnología'], ['img/certificado2.jpg'])">
+                            <div class="p-image">
+                                <img src="img/certificado2.jpg" alt="Masterclass IA" class="project-thumb">
+                                <div class="cert-icon"><i class="fas fa-brain"></i></div>
+                            </div>
+                            <div class="p-content">
+                                <h3 class="p-title">Masterclass: Inteligencia Artificial</h3>
+                                <div class="p-tags">
+                                    <span class="tag cert">IA</span>
+                                </div>
+                                <p class="p-desc">Fundamentos y aplicaciones de IA.</p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>
@@ -670,7 +698,7 @@
             tags.forEach(t => {
                 const sp = document.createElement('span');
                 sp.className = 'tag'; 
-                if(title.includes("Certifi") || title.includes("Curso")) {
+                if(title.includes("Certifi") || title.includes("Curso") || title.includes("Masterclass") || title.includes("Inteligencia")) {
                    sp.classList.add('cert');
                 }
                 sp.innerText = t;
