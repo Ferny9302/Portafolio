@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Bryan Fernando Palma Mendez</title>
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- COLORES E IDENTIDAD VISUAL --- */
+        :root {
+            --blue-sidebar: #2c5484; 
+            --blue-header: #1a3c61;
+            --text-dark: #333;
+            --text-white: #fff;
+            --bg-page: #e0e0e0;
+            --gold-accent: #d4af37; /* Color dorado para certificados */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-page);
+            padding-bottom: 50px;
+        }
+
+        /* --- NAVEGACIÓN --- */
+        header {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            margin-bottom: 30px;
+        }
+
+        nav {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo { font-family: 'Roboto Condensed', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--blue-sidebar); text-transform: uppercase; }
+        
+        .tabs-container {
+            background: #f0f0f0;
+            padding: 5px;
+            border-radius: 30px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .tab-btn {
+            border: none;
+            background: transparent;
+            padding: 8px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            background-color: var(--blue-sidebar);
+            color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.15);
+            min-height: 1000px;
+        }
+
+        .section-view { display: none; animation: fadeIn 0.4s; }
+        .section-view.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* =========================================
+           DISEÑO DEL CURRICULUM
+           ========================================= */
+        .cv-layout { display: flex; min-height: 1000px; }
+
+        /* COLUMNA IZQUIERDA (AZUL) */
+        .cv-sidebar {
+            width: 35%;
+            background-color: var(--blue-sidebar);
+            color: white;
+            padding: 30px 20px;
+            text-align: center; 
+        }
+
+        .photo-frame {
+            width: 160px; 
+            height: 160px;
+            margin: 0 auto 30px; 
+            border-radius: 50%;
+            border: 3px solid #9d4edd; 
+            padding: 4px;
+            background: white; 
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            object-position: center center; 
+            border-radius: 50%;
+        }
+
+        .sidebar-section { 
+            margin-bottom: 40px; 
+            text-align: left; 
+        }
+        
+        .sidebar-title {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 5px;
+        }
+
+        .contact-row {
+            display: flex; 
+            gap: 10px; 
+            margin-bottom: 12px; 
+            font-size: 0.9rem; 
+            align-items: flex-start;
+            justify-content: flex-start; 
+        }
+        .contact-row i { margin-top: 3px; width: 15px; text-align: center; }
+
+        .sidebar-list { list-style: none; padding-left: 0; font-size: 0.9rem; }
+        .sidebar-list li { 
+            margin-bottom: 8px; 
+            display: flex; 
+            justify-content: flex-start; 
+        }
+        .sidebar-list li::before { content: "•"; margin-right: 8px; font-weight: bold; }
+
+        /* COLUMNA DERECHA (CONTENIDO) */
+        .cv-content { width: 65%; background: white; }
+
+        .cv-header {
+            background-color: var(--blue-header);
+            color: white;
+            padding: 40px 30px;
+        }
+        .cv-name {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        .cv-role {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        .cv-body { padding: 30px; }
+
+        .main-title {
+            color: var(--blue-sidebar);
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--blue-sidebar);
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        .main-title:first-child { margin-top: 0; }
+
+        .profile-text { font-size: 0.95rem; line-height: 1.6; color: #444; text-align: justify; margin-bottom: 30px; }
+
+        .job-item {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 25px;
+            border-left: 3px solid var(--blue-sidebar);
+        }
+        .job-item::before {
+            content: ''; position: absolute; left: -9px; top: 6px;
+            width: 15px; height: 15px; background: var(--blue-sidebar); border-radius: 50%;
+        }
+
+        .job-role { font-weight: 700; font-size: 1.1rem; color: var(--blue-sidebar); }
+        .job-company { display: block; font-weight: 600; color: #555; font-size: 0.9rem; margin-bottom: 5px; }
+        .job-desc { font-size: 0.9rem; color: #666; }
+
+        /* =========================================
+           SECCIÓN PROYECTOS & CERTIFICADOS
+           ========================================= */
+        .projects-container { padding: 40px; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+        
+        .project-card { 
+            background: white; 
+            border: 1px solid #eee; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+            transition: transform 0.3s, box-shadow 0.3s; 
+            cursor: pointer; 
+        }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+
+        /* Estilo especial para tarjetas de certificados */
+        .cert-card:hover {
+            border-color: var(--gold-accent);
+            box-shadow: 0 10px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .p-image { 
+            height: 180px; /* Altura de la zona de imagen */
+            background: #eef2f6; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Icono superpuesto para certificados */
+        .cert-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--gold-accent);
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .project-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover .project-thumb {
+            transform: scale(1.05); 
+        }
+
+        .p-content { padding: 20px; }
+        .p-title { font-size: 1.1rem; font-weight: 700; color: var(--blue-sidebar); margin-bottom: 5px; }
+        .p-tags { margin-bottom: 10px; display: flex; gap: 5px; flex-wrap: wrap; }
+        .tag { font-size: 0.75rem; background: #e0e7ff; color: var(--blue-sidebar); padding: 3px 8px; border-radius: 4px; font-weight: 600; }
+        
+        /* Tags dorados para certificados */
+        .tag.cert { background: #fff8e1; color: #b78a02; }
+
+        .p-desc { font-size: 0.9rem; color: #666; }
+
+        /* MODAL */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 999; justify-content: center; align-items: center; }
+        .modal-box { background: white; width: 90%; max-width: 800px; max-height: 90vh; overflow-y: auto; border-radius: 8px; padding: 20px; position: relative; }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: #333; z-index: 10; background: rgba(255,255,255,0.8); border-radius: 50%; padding: 0 10px; }
+        
+        .modal-img-container {
+            width: 100%;
+            height: 350px; 
+            background: #f0f0f0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .modal-img-indicator {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* Flechas de Navegación */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: none; /* Se activa con JS */
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            user-select: none;
+            z-index: 5;
+        }
+        .nav-arrow:hover { background-color: rgba(0, 0, 0, 0.8); }
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cv-layout { flex-direction: column; }
+            .cv-sidebar, .cv-content { width: 100%; }
+            .cv-sidebar { text-align: center; }
+            .contact-row { justify-content: center; }
+            .sidebar-section { text-align: center; }
+            .sidebar-list li { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="nav-logo">Bryan<span>Palma</span></div>
+            <div class="tabs-container">
+                <button class="tab-btn active" onclick="showSection('cv')">CV</button>
+                <button class="tab-btn" onclick="showSection('projects')">Proyectos</button>
+                <button class="tab-btn" onclick="showSection('certificates')">Certificados</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- VISTA CURRICULUM -->
+        <section id="cv" class="section-view active">
+            <div class="cv-layout">
+                
+                <aside class="cv-sidebar">
+                    <div class="photo-frame">
+                        <img src="img/Image.jpg" alt="Foto de Bryan" class="profile-img">
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Datos Personales</h3>
+                        <div class="contact-row"><i class="fas fa-phone"></i> (636) 128 4704</div>
+                        <div class="contact-row"><i class="fas fa-envelope"></i> bryanalemania@hotmail.com</div>
+                        <div class="contact-row"><i class="fas fa-map-marker-alt"></i> Callejón 8 y Coahuila # 3312, Colonia Jaramillo</div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Habilidades Blandas</h3>
+                        <ul class="sidebar-list">
+                            <li>Comunicación oral y escrita</li>
+                            <li>Paciente</li>
+                            <li>Me gusta aprender cosas nuevas</li>
+                            <li>Trabajo en equipo</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Habilidades Técnicas</h3>
+                        <ul class="sidebar-list">
+                            <li>Conocimiento en cableado y redes (Intermedio)</li>
+                            <li>Básico en Java</li>
+                            <li>Intermedio en bases de datos</li>
+                            <li>Conocimiento en Office (Word, Excel, etc.)</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Idiomas</h3>
+                        <ul class="sidebar-list">
+                            <li>Español (Nativo)</li>
+                            <li>Inglés (Intermedio)</li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <article class="cv-content">
+                    <div class="cv-header">
+                        <h1 class="cv-name">Bryan Fernando Palma Mendez</h1>
+                        <h2 class="cv-role">Ingeniero en Sistemas Computacionales</h2>
+                    </div>
+
+                    <div class="cv-body">
+                        <h3 class="main-title">Perfil</h3>
+                        <p class="profile-text">
+                            Estudiante de la carrera de Sistemas Computacionales. Disfruto ver series, películas y jugar videojuegos. Soy estricto con mi trabajo, buscando siempre hacerlo bien y de la manera más eficiente posible. Soy un apasionado del área de redes, además de ser una persona amable y paciente.
+                        </p>
+
+                        <h3 class="main-title">Experiencia Laboral</h3>
+                        
+                        <div class="job-item">
+                            <div class="job-role">Carga y Descarga de Tráilers</div>
+                            <span class="job-company">Empresa Albertsons</span>
+                            <p class="job-desc">Realizaba la carga y descarga de tráilers utilizando máquinas especiales. Disfrutaba realizar este trabajo con eficiencia.</p>
+                        </div>
+
+                        <div class="job-item">
+                            <div class="job-role">Paquimé Registros</div>
+                            <span class="job-company">Empresa Paquimé</span>
+                            <p class="job-desc">Trabajé en la empacadora Paquimé en el área conocida como "dompe". Mi función principal consistía en pesar cajones de durazno y llevar un registro preciso de ellos.</p>
+                        </div>
+
+                        <div class="job-item">
+                            <div class="job-role">Área de Sistemas</div>
+                            <span class="job-company">Empresa Paquimé</span>
+                            <p class="job-desc">En el área de sistemas de Paquimé adquirí gran experiencia. Realicé diversas tareas especializadas, desde la reparación de computadoras hasta la instalación de cámaras de seguridad.</p>
+                        </div>
+
+                        <h3 class="main-title">Formación</h3>
+                        <div class="job-item" style="border:none;">
+                            <div class="job-role">Preparatoria:</div>
+                            <span class="job-company">Instituto Blas Pascal</span>
+                            <p class="job-desc">Periodo: 2017 - 2020</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- VISTA PROYECTOS -->
+        <section id="projects" class="section-view">
+            <div class="projects-container">
+                <h2 style="color: var(--blue-sidebar); border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 30px;">Mis Proyectos</h2>
+                
+                <div class="projects-grid">
+                    
+                    <!-- PROYECTO 1 -->
+                    <div class="project-card" onclick="openModal('Departamento de Enfermería', 'Este proyecto fue realizado para el Departamento de Enfermería del Instituto Tecnológico Superior de Nuevo Casas Grandes, con la finalidad de tener un mejor control de las citas de los alumnos y trabajadores. A su vez, permite un mejor control y organización de los medicamentos, gestionando tanto el stock como su caducidad.', ['PHP', 'JavaScript', 'CSS', 'HTML'], ['img/Imagen1.png', 'img/Imagen2.png', 'img/Imagen3.png', 'img/Imagen4.png', 'img/Imagen5.png', 'img/Imagen6.png', 'img/Imagen7.png'])">
+                        <div class="p-image">
+                            <img src="img/Imagen1.png" alt="Enfermería" class="project-thumb">
+                        </div>
+                        <div class="p-content">
+                            <h3 class="p-title">Departamento de Enfermería</h3>
+                            <div class="p-tags">
+                                <span class="tag">PHP</span>
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">HTML</span>
+                            </div>
+                            <p class="p-desc">Sistema de control de citas e inventario médico.</p>
+                        </div>
+                    </div>
+
+                    <!-- PROYECTO 2 -->
+                    <div class="project-card" onclick="openModal('Controles en Línea', 'Página web en línea para comprar controles de videojuegos (GameCube). Esta página fue diseñada con el propósito de crear una plataforma de ventas online, enfocada en un producto de alta demanda: controles de videojuegos retro.', ['HTML', 'CSS', 'PHP'], ['img/img1.png', 'img/img2.png', 'img/img3.png'])">
+                        <div class="p-image">
+                            <img src="img/img1.png" alt="Controles" class="project-thumb">
+                        </div>
+                        <div class="p-content">
+                            <h3 class="p-title">Controles en Línea</h3>
+                            <div class="p-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">PHP</span>
+                            </div>
+                            <p class="p-desc">Página web de venta de controles de videojuegos.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- VISTA CERTIFICADOS (NUEVA) -->
+        <section id="certificates" class="section-view">
+            <div class="projects-container">
+                <h2 style="color: var(--blue-sidebar); border-bottom: 2px solid #d4af37; padding-bottom: 10px; margin-bottom: 30px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-certificate" style="color: #d4af37;"></i> Certificaciones y Logros
+                </h2>
+                
+                <div class="projects-grid">
+                    
+                    <!-- CERTIFICADO 1: REDES -->
+                    <div class="project-card cert-card" onclick="openModal('Certificado en Redes', 'Certificación que avala conocimientos en estructuración de cableado, configuración de dispositivos de red y protocolos de comunicación.', ['Redes', 'Infraestructura'], ['img/redes.png'])">
+                        <div class="p-image">
+                            <img src="img/redes.png" alt="Certificado Redes" class="project-thumb">
+                            <div class="cert-icon"><i class="fas fa-award"></i></div>
+                        </div>
+                        <div class="p-content">
+                            <h3 class="p-title">Certificación en Redes</h3>
+                            <div class="p-tags">
+                                <span class="tag cert">Redes</span>
+                                <span class="tag cert">Infraestructura</span>
+                            </div>
+                            <p class="p-desc">Especialización en cableado y configuración.</p>
+                        </div>
+                    </div>
+
+                    <!-- CERTIFICADO 2: LINUX -->
+                    <div class="project-card cert-card" onclick="openModal('Certificado en Linux', 'Certificación en administración y manejo del sistema operativo Linux, cubriendo comandos, gestión de usuarios y seguridad.', ['Linux', 'Sistemas'], ['img/linux.png'])">
+                        <div class="p-image">
+                            <img src="img/linux.png" alt="Certificado Linux" class="project-thumb">
+                            <div class="cert-icon"><i class="fas fa-award"></i></div>
+                        </div>
+                        <div class="p-content">
+                            <h3 class="p-title">Curso de Linux</h3>
+                            <div class="p-tags">
+                                <span class="tag cert">Linux</span>
+                                <span class="tag cert">Sistemas Operativos</span>
+                            </div>
+                            <p class="p-desc">Administración de sistemas y comandos.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- VENTANA MODAL -->
+    <div id="projectModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeModalBtn()">&times;</span>
+            
+            <div class="modal-img-container">
+                <button class="nav-arrow prev" onclick="prevSlide()">&#10094;</button> 
+                <button class="nav-arrow next" onclick="manualNext()">&#10095;</button>
+
+                <img id="mImage" src="" alt="Detalle Proyecto" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                
+                <div id="mIndicator" class="modal-img-indicator" style="display:none;">1 / 7</div>
+            </div>
+
+            <h2 id="mTitle" style="color: var(--blue-sidebar); margin-bottom: 10px;">Título</h2>
+            <div id="mTags" style="margin-bottom: 15px; display: flex; gap: 5px; flex-wrap: wrap;"></div>
+            <p id="mDesc" style="color: #555; line-height: 1.6;">Descripción...</p>
+        </div>
+    </div>
+
+    <script>
+        function showSection(id) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.section-view').forEach(s => s.classList.remove('active'));
+            // Mostrar la seleccionada
+            document.getElementById(id).classList.add('active');
+            
+            // Actualizar botones de navegación
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            
+            if(id === 'cv') btns[0].classList.add('active');
+            else if(id === 'projects') btns[1].classList.add('active');
+            else if(id === 'certificates') btns[2].classList.add('active');
+        }
+
+        const modal = document.getElementById('projectModal');
+        const mTitle = document.getElementById('mTitle');
+        const mDesc = document.getElementById('mDesc');
+        const mTags = document.getElementById('mTags');
+        const mImage = document.getElementById('mImage'); 
+        const mIndicator = document.getElementById('mIndicator');
+        const arrowPrev = document.querySelector('.nav-arrow.prev');
+        const arrowNext = document.querySelector('.nav-arrow.next');
+
+        let currentImages = [];
+        let currentIndex = 0;
+        let slideInterval;
+
+        function openModal(title, desc, tags, imagesList) {
+            mTitle.innerText = title;
+            mDesc.innerText = desc;
+            
+            mTags.innerHTML = '';
+            tags.forEach(t => {
+                const sp = document.createElement('span');
+                sp.className = 'tag'; 
+                // Si es tag de certificado (dorado), añadir clase extra
+                if(title.includes("Certifi") || title.includes("Curso")) {
+                   sp.classList.add('cert');
+                }
+                sp.innerText = t;
+                mTags.appendChild(sp);
+            });
+
+            if(imagesList && imagesList.length > 0) {
+                currentImages = imagesList;
+                currentIndex = 0;
+                updateModalImage();
+                mImage.style.display = 'block';
+                
+                if(currentImages.length > 1) {
+                    mIndicator.style.display = 'block';
+                    arrowPrev.style.display = 'flex';
+                    arrowNext.style.display = 'flex';
+                    resetTimer();
+                } else {
+                    mIndicator.style.display = 'none';
+                    arrowPrev.style.display = 'none';
+                    arrowNext.style.display = 'none';
+                }
+            } else {
+                mImage.style.display = 'none';
+                mIndicator.style.display = 'none';
+                arrowPrev.style.display = 'none';
+                arrowNext.style.display = 'none';
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % currentImages.length;
+            updateModalImage();
+        }
+
+        function manualNext() {
+            nextSlide();
+            resetTimer();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+            updateModalImage();
+            resetTimer();
+        }
+
+        function updateModalImage() {
+            mImage.src = currentImages[currentIndex];
+            mIndicator.innerText = (currentIndex + 1) + " / " + currentImages.length;
+        }
+
+        function resetTimer() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000); 
+        }
+
+        function closeModal(e) { 
+            if(e.target === modal) {
+                modal.style.display = 'none'; 
+                clearInterval(slideInterval);
+            }
+        }
+        
+        function closeModalBtn() { 
+            modal.style.display = 'none'; 
+            clearInterval(slideInterval);
+        }
+    </script>
+</body>
+</html>
